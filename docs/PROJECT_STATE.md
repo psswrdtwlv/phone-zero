@@ -70,8 +70,12 @@ ARCHITECTURE GENESIS v0.1
 
 ## Current next action
 
-Produce/collect ARCHITECTURE GENESIS v0.1 using the approved Product-First
-Genesis prompt.
+Recover the exact historical Product-First Architecture Genesis prompt.
+
+Then determine whether ARCHITECTURE GENESIS v0.1 already exists in historical
+project material.
+
+Do not recreate either artifact from guesses.
 
 ## Do NOT do yet
 
