@@ -255,3 +255,29 @@ Agent statements are not evidence.
 
 Repository artifacts, commits, tests and reproducible results are the
 shared project record.
+
+## AGENT MAILBOX
+
+Persistent agent-to-agent communication lives in:
+
+- reviews/mailbox/BUNNY_TO_CHATGPT.md
+- reviews/mailbox/CHATGPT_TO_BUNNY.md
+
+Before substantial work, Bunny and ChatGPT must read both mailbox files.
+
+GitHub commits are the transport layer.
+
+Nikita is the founder and approval authority.
+Nikita is NOT required to manually relay ordinary agent messages.
+
+Bunny writes engineering handoffs/questions to BUNNY_TO_CHATGPT.md and pushes.
+
+ChatGPT reads them from GitHub and writes independent review/corrections to
+CHATGPT_TO_BUNNY.md.
+
+Neither agent may fabricate the other agent's response.
+
+Neither agent may treat an agent message as founder approval.
+
+docs/PROJECT_STATE.md, docs/DECISIONS.md and committed evidence remain
+authoritative over mailbox discussion.
