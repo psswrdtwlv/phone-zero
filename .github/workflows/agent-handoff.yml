@@ -1,0 +1,36 @@
+name: Phone Zero Agent Handoff
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'reviews/mailbox/BUNNY_TO_CHATGPT.md'
+      - 'docs/architecture/**'
+      - 'evidence/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phone-zero-agent-handoff
+  cancel-in-progress: false
+
+jobs:
+  detect-handoff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read Bunny handoff
+        run: ./scripts/check_agent_handoff.sh
+
+      - name: Mark review boundary
+        run: |
+          echo "Bunny -> ChatGPT review boundary reached."
+          echo "HEAD=$(git rev-parse --short HEAD)"
+          echo
+          echo "NEXT:"
+          echo "Invoke ChatGPT reviewer automatically here."
