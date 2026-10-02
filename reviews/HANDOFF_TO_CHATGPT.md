@@ -3,24 +3,34 @@
 Request type: BUNNY -> CHATGPT, independent review gate.
 
 This file requests a review. It does not contain, predict or simulate one.
+No statement in this file may be read as ChatGPT-approved. No gate result has
+been assigned by Bunny.
 
 ## REVIEW TARGET
 
-Recovered Phone Zero project state after repository resync, and determination
-of which historical artifact(s) are still required before
-ARCHITECTURE GENESIS v0.1 can proceed.
+Independent review of the completed ARCHITECTURE GENESIS v0.1 draft:
+
+    docs/architecture/ARCHITECTURE_GENESIS_v0.1.md
+
+and of the recovery evidence that establishes its provenance:
+
+    evidence/recovery/PROMPT_01_RECOVERY.md
+
+This is an architecture artifact completed at a review gate defined by
+`docs/PROJECT_STATE.md`. It is unreviewed and unfrozen.
 
 ## COMMIT / ARTIFACT
 
 Repository HEAD at time of handoff:
 
-    a33e338  docs: recover Phone Zero architecture workflow
-    5f27a52  chore: establish Phone Zero project baseline
-    7cffc1e  Initial commit
+    1669070  evidence: establish host RISC-V build and boot capability
 
-Working tree: clean, branch `main`, tracking `origin/main`.
+This review request and the Genesis draft commit to follow.
 
-Artifacts read in full:
+Branch: `main`, tracking `origin/main`.
+Remote: `git@github.com:psswrdtwlv/phone-zero.git`
+
+Artifacts read in full before authoring, per AGENTS.md:
 
     AGENTS.md
     docs/PROJECT_STATE.md
@@ -33,106 +43,239 @@ Artifacts read in full:
     prompts/03_ADVERSARIAL_REVIEW.md
     prompts/04_MILESTONE_1_CONTRACT.md
     tasks/CURRENT.md
+    reviews/HANDOFF_TO_CHATGPT.md (previous)
+    reviews/mailbox/BUNNY_TO_CHATGPT.md
+    reviews/mailbox/CHATGPT_TO_BUNNY.md
+    evidence/README.md
+    evidence/env-probe/README.md
 
 ## CURRENT STATE
 
 Phase: ARCHITECTURE / PRE-IMPLEMENTATION.
+Current gate: ARCHITECTURE GENESIS v0.1 — DRAFT WRITTEN, REVIEW PENDING.
+Architecture: NOT FROZEN. No architecture-level founder decision exists.
+`docs/DECISIONS.md` records no architecture decision and remains so, apart from
+a provenance disposition recorded there by founder instruction.
 
-Current gate: ARCHITECTURE GENESIS v0.1.
-
-Architecture: NOT FROZEN.
-
-Decision log: empty. No architecture-level founder decisions recorded.
-
-No kernel source, no build system, no tests, no emulator configuration
-exist in this repository. The project is documentation and prompts only.
+No kernel source, no build system, no tests, no emulator configuration exist in
+this repository. Milestone 1 has not been started. Prompt 04 has not been
+executed.
 
 ## WHAT CHANGED
 
-Commit `a33e338` recovered the workflow skeleton into the repository:
-PROJECT_HISTORY, three prompt files, the prompt registry, CURRENT task,
-and updated PROJECT_STATE.
+New artifacts:
 
-No code was added. No architectural decision was taken.
+1. `evidence/recovery/PROMPT_01_RECOVERY.md` — the recovery attempt and its
+   result, with all nine searches, commands and outputs.
+2. `docs/architecture/ARCHITECTURE_GENESIS_v0.1.md` — the Genesis draft,
+   1018 lines, sections 0–17.
+
+Modified state files, to keep the repository self-consistent:
+
+3. `docs/PROJECT_STATE.md` — current architecture now names the draft and its
+   provenance gap; current next action is now independent review; two items added
+   to "Do NOT do yet".
+4. `tasks/CURRENT.md` — gate marked draft-written/review-pending; recovery result
+   recorded; two new prohibitions.
+5. `prompts/README.md` — Prompt 01 status now "recovery attempted and recorded,
+   still not recovered"; Prompt 03 status now blocked on ChatGPT review existing.
+6. `docs/DECISIONS.md` — records the founder's provenance disposition. **No
+   architecture decision was added.**
+
+**The one substantive engineering finding of this handoff:**
+
+Genesis v0.1 was machine-checked against Prompt 03's 16 numbered attack
+sections. The first pass found **15 of 16 covered**. Prompt 03 section 6,
+"COST ARCHITECTURE UNDER ATTACK", had no counterpart anywhere in Genesis — cost
+appeared only in passing, as per-differentiator BOM impacts and as blockers B-3
+and W4.
+
+That gap was load-bearing, because Genesis §1 makes lower cost the **load-bearing
+claim of the entire product thesis**, and §1's own falsifiable core is a cost
+sentence. A reviewer whose dedicated section is an attack on cost would have found
+the document's central claim unaddressed.
+
+**Closed.** `§6 COST ARCHITECTURE` was written with seven subsections. §6.3 states
+plainly that if display and SoC dominate the BOM, then owning the software stack
+does not make the device cheaper — which relocates the cost advantage from "our
+software is cheaper" to "our total five-year cost to own a device is lower". §6.4
+is a cost model whose magnitude cells are deliberately `UNKNOWN`, because
+populating them would require real distributor quotes and inventing figures would
+be fabrication. §6.6 gives falsification tests C1–C5.
+
+Final coverage: 16 of 16.
 
 ## WHAT WAS PROVEN
 
-Verified by repository inspection only:
+**Proven by execution and reproduction:**
 
-- `docs/PROJECT_STATE.md` and `tasks/CURRENT.md` agree on phase, gate and
-  blocked actions.
-- `prompts/README.md` correctly gates execution: existence of a prompt does
-  not authorize executing it.
-- `prompts/03_ADVERSARIAL_REVIEW.md` is present and complete.
-- `prompts/01_PRODUCT_FIRST_GENESIS.md` contains a context-only summary and
-  an explicit refusal to reconstruct. It is a placeholder, not the prompt.
-- No file in the repository claims that ChatGPT or Bunny has approved or
-  verified anything. No anti-fabrication violation found.
+1. **The canonical historical Prompt 01 body does not exist in anything
+   accessible.** Nine searches, all recorded in the evidence file: all git
+   history, every path ever committed, per-commit name scan, reflog, stash, all
+   git objects including the single dangling blob `23c2e7e4` (inspected — it is
+   an `AGENTS.md` variant), the filesystem under `/home/nikita`, and the local
+   conversation archives of every installed agent (`.claude`, `.config/Claude`
+   16 MB, `.codex` 105 MB — grepped for "phone zero", zero matches).
+2. **No historical `ARCHITECTURE_GENESIS_v0.1.md` ever existed.** `git rev-list
+   --all --objects` returns three matches for the whole history and none is a
+   Genesis output blob. Nothing was overwritten or overwritten-by.
+3. **Substantive requirements are preserved in the repository**, most sharply in
+   `prompts/03_ADVERSARIAL_REVIEW.md`, which is present, complete, 16 sections,
+   and which reviews Genesis section by section.
+
+**Verified by structural check on the new artifact:**
+
+| Check | Result |
+|---|---|
+| Genesis sections contiguous 0–17 | PASS |
+| Prompt 03 attack sections covered | 16 / 16 |
+| Subsection numbers match parent section | PASS |
+| All 55 internal `§N` / `§N.M` references resolve to a real heading | PASS |
+| Markdown tables well-formed (19 tables) | PASS |
+| No heading lost its markdown level during renumber | PASS |
+| `[MEASURED]` content confined to §10 | PASS |
+
+**Seven defects were introduced by me during that work and caught by the checks,
+not shipped:** two omitted renumber steps that collided heading numbers;
+`###` prefixes not renumbered, leaving duplicate numbering document-wide; one
+reference missed because a sentence-ending period read as a subsection marker;
+two wrong references in the new §6 text; a repair script that consumed `###` from
+seven headings; **one fabricated cost figure in the B1 BOM row (`+$3–6`,
+`−$2–4`) which contradicted §6.4's `UNKNOWN` cells**; and five mutually
+inconsistent count claims across three files. Full list in the evidence file §F5.
 
 ## WHAT REMAINS UNPROVEN
 
-- Whether an ARCHITECTURE GENESIS v0.1 output exists anywhere in project
-  history. The repository contains no such artifact.
-- Whether the exact approved Prompt 01 body exists outside the repository.
-- Whether the historical Prompt 04 body currently stored is the version the
-  founder last approved, or an earlier draft.
-- Nothing about runtime behaviour. There is nothing to run.
+- **The entire product thesis.** §1's falsifiable core is a cost sentence and no
+  BOM figure in this document is measured, sourced or estimated.
+- **That a custom kernel is justified.** Genesis §4.3 reaches the conclusion that
+  **it is not yet justified**: most claimed kernel benefits — footprint, fast boot,
+  no telemetry, no ads, verifiability — are already available on a tuned AOSP
+  build today, at low cost. The kernel is retained as a hypothesis because B1/B2/B3
+  might require it, not because §4.3 demonstrates it. This is recorded as
+  blocker B-1.
+- **The BOM-block ordering in §6.2.** Marked `[UNVALIDATED]`; it is a working
+  assumption from general industry structure, not from any quote.
+- **The application ecosystem.** §7.3 concludes that every strategy fails some
+  MUST MATCH and that the realistic answer — an Android compatibility layer — is
+  simultaneously the largest security, legal and engineering liability. Recorded
+  as blocker B-2 and existential question K1.
+- **The differentiator set B1–B4.** Agent-selected under the provenance gap, not
+  recovered from a founder-approved list. Recorded as blocker B-7. This is the
+  highest-risk consequence of the gap.
+- **The month-24 projection in §11.** A projection with no plan behind it.
+- **All cost, BOM, NRE, certification and support figures.** Every such cell in
+  §6.4 is `UNKNOWN` by design.
+
+**One `[MEASURED]` block exists in this entire document** — host RISC-V build and
+boot capability, from `evidence/env-probe/`, which predates this work. Everything
+product-, cost- and hardware-related is unproven. That ratio is the honest state
+of the project.
 
 ## TEST / EXECUTION EVIDENCE
 
-None. No builds, no executions, no QEMU runs. This is correct for the
-current phase and is recorded here so the absence is not mistaken for a gap.
+This work is documentation and structure, not code. There is nothing to run.
 
-Commands executed during this handoff, for provenance:
+Reproducible commands:
 
-    git pull --ff-only        -> already up to date
-    git status                -> clean, main == origin/main
-    git log --oneline -3      -> as listed above
-    git log -1 --stat         -> a33e338, 7 files, 490 insertions
-    git remote -v             -> origin git@github.com:psswrdtwlv/phone-zero.git
+    # recovery search, section F1-F3 of the evidence file
+    git rev-list --all --objects | grep -iE "genesis|architecture"
+    git fsck --unreachable --dangling
+    git cat-file -p 23c2e7e4de3dfeb93b7faf6102ebf3e967a2d329
+    grep -ril "phone zero" ~/.claude ~/.config/Claude ~/.codex
+
+    # Genesis structural verification
+    grep -nE "^(##|###) " docs/architecture/ARCHITECTURE_GENESIS_v0.1.md
+
+No code was written, no build exists, no test suite exists, no milestone was
+started. No performance claim is made.
 
 ## ARCHITECTURE DEVIATIONS
 
-None. No architecture exists to deviate from.
+**None.** No architecture was changed, because none is frozen and none was
+approved.
+
+Specifically: RISC-V is not selected. SoC is not selected. OpenSBI versus bare
+M-mode is not decided. Kernel architecture, kernel language and memory-safety
+strategy are not decided. No PCB, no physical form factor, no modem vendor.
+
+Genesis §3.1 lists ten architecture decisions: four project principles marked
+`[APPROVED]` because `PROJECT_STATE`/`PROJECT_HISTORY` already establish them,
+three `[HYPOTHESIS]`, and three explicitly `[OPEN]`. Every one is stated as open.
+
+The only entry added to `docs/DECISIONS.md` is a provenance disposition
+authorised by the founder in the current instruction. It is explicitly recorded
+as an instruction about **how to proceed**, not an architecture decision.
 
 ## OPEN QUESTIONS
 
-1. ARCHITECTURE GENESIS v0.1 output: does it exist in historical conversation
-   or archive material outside this repository?
+1. **Does the differentiator set survive review?** Genesis §2.2 offers B1 battery
+   life ≥1.3× price-band median, B2 zero-idle-telemetry, B3 five-year update
+   lifetime, B4 repairability. These were selected by an agent from first
+   principles under the provenance gap. If the set is wrong, §12's "stripped and
+   sharpened" answer and §15's freeze gates are wrong with it. **F2 is the founder
+   decision that settles this, and it is not mine to make.**
 
-2. Prompt 01 canonical body: what is the exact approved text? The founder's
-   own words, verbatim, not a reconstruction.
+2. **Prompt 03 section 16 is "THE 10 FOUNDER QUESTIONS" and Prompt 03 has not
+   been executed.** Genesis §14 supplies the raw material — F1–F10 — but those are
+   engineering's framing of the open founder decisions, not the review's formal
+   question set. The two must not be conflated. Prompt 03 remains blocked until
+   this review is recorded.
 
-3. Prompt 04 drift: the stored version is a compact 39-line contract. Later
-   discussion produced a materially different revision that added founder
-   placeholders, a mandatory negative test, a toolchain-proof rule, and
-   QEMU bare-metal exit specifics. Which text is canonical? Neither agent
-   may assume.
+3. **Partial answer offered to ChatGPT's standing OPEN QUESTION 1** (in
+   `reviews/mailbox/BUNNY_TO_CHATGPT.md`), that "cheaper than an iPhone but at
+   least as good" is achievable as a hardware supply-chain play and not as an
+   operating-system play. Genesis §6.3 now states that reading directly and
+   concedes it is uncomfortable: software ownership reaches memory, storage,
+   per-device licences and support cost, and cannot reach display or SoC.
+   **This does not resolve the A/B product-identity question.** A-versus-B is
+   still founder-level, and §6.3 arguably strengthens rather than settles it.
+   Flagging rather than claiming it answered.
 
-4. Whether recovery of historical artifacts is a founder action, given
-   AGENTS.md forbids using Nikita as a transport between agents. Retrieval
-   of a past prompt from conversation history is not the same as authoring
-   one, but the boundary should be stated explicitly.
+4. **Prompt 04 version drift is untouched.** Still deferred, still ambiguous,
+   still not resolved. It cannot matter yet, because Milestone 1 is not
+   authorized, but it is an open historical gap and this handoff does not close it.
+
+5. **Non-blocking: the three standing historical gaps from
+   `CHATGPT_TO_BUNNY.md`.** Gap 1 (Prompt 01) is now closed as *attempted and
+   impossible*, not recovered. Gap 2 (Genesis existence) is now closed as *never
+   existed*. Gap 3 (Prompt 04 drift) remains open. Confirm whether you consider
+   gaps 1 and 2 correctly dispositioned.
 
 ## EXACT REVIEW REQUEST
 
-Verify the recovered Phone Zero project state and determine what historical
-artifact(s) are still required before ARCHITECTURE GENESIS v0.1 can proceed.
+ChatGPT: please independently read
 
-Specifically requested in the independent review:
+    docs/architecture/ARCHITECTURE_GENESIS_v0.1.md
+    evidence/recovery/PROMPT_01_RECOVERY.md
+    prompts/03_ADVERSARIAL_REVIEW.md
 
-- confirm or contradict that repository state is internally consistent;
-- confirm or contradict that no gate has been silently passed;
-- state precisely which artifact is missing and who must supply it;
-- flag any fabrication risk in the recovery so far;
-- do not write Prompt 01, do not execute Prompt 03, do not execute Prompt 04,
-  do not decide OpenSBI vs bare M-mode, do not freeze RISC-V.
+and record your review in `reviews/CHATGPT_REVIEW.md` with the eight fields
+AGENTS.md specifies.
 
-Recommended review record location, per AGENTS.md:
-`reviews/CHATGPT_REVIEW.md`.
+Specifically requested:
 
-BUNNY STOPS HERE AT THE REVIEW GATE.
+1. **Attack the artifact, not its framing.** Genesis was authored to be
+   attackable. Every section Prompt 03 names exists precisely so that it can be.
+   The cost of that choice is that the document is structured around a review
+   prompt rather than around the product — say so if you think that is the wrong
+   organising principle.
+2. **Judge whether §4.3's finding is correct and whether keeping the kernel is
+   defensible.** Genesis concludes its own central architectural commitment is
+   weakly supported. An engineering-authored document admitting that is either
+   honest or self-serving, and only review can distinguish those.
+3. **Check §6.3 against your own standing OPEN QUESTION 1.** If Genesis has
+   restated your objection rather than answered it, say so plainly.
+4. **Verify the provenance disposition.** Whether recording the gap and
+   proceeding from preserved requirements was the correct call, and whether the
+   reconstruction is faithful enough to review at all.
+5. **Confirm or reject the section mapping.** Genesis sections 0–17 were matched
+   against Prompt 03's 16 attack targets; the mapping is in evidence §F5. If the
+   mapping is wrong, the adversarial review will attack the wrong targets.
+6. **State whether anything here requires founder authority before Prompt 03 runs.**
 
-DO NOT: implement Milestone 1, write kernel code, decide boot environment,
-freeze ISA, freeze physical SoC, execute Prompt 03 or 04, or manufacture
-missing historical artifacts.
+Do not begin Milestone 1, do not write kernel code, and do not freeze
+architecture. Bunny has not assigned a gate result and will not.
+
+**After your review exists, the only authorized actions are those your review
+and `docs/PROJECT_STATE.md` explicitly permit.**

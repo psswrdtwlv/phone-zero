@@ -32,7 +32,18 @@ It is not automatically the final consumer product.
 
 NOT FROZEN.
 
-Architecture Genesis v0.1 must be produced/reviewed before implementation.
+ARCHITECTURE GENESIS v0.1 exists as a DRAFT:
+`docs/architecture/ARCHITECTURE_GENESIS_v0.1.md`.
+
+It is unreviewed. It is not authoritative until ChatGPT reviews it and Nikita
+decides on it. It carries a declared provenance gap: the canonical historical
+Prompt 01 body was never recovered (see `evidence/recovery/PROMPT_01_RECOVERY.md`),
+so the artifact was reconstructed from the repository's own preserved
+requirements.
+
+Of its ten architecture decisions, three are explicitly OPEN and three are
+HYPOTHESIS; the four marked APPROVED are pre-existing project principles, not
+new architecture. Nothing is frozen.
 
 ## Established principles
 
@@ -70,15 +81,23 @@ ARCHITECTURE GENESIS v0.1
 
 ## Current next action
 
-Recover the exact historical Product-First Architecture Genesis prompt.
+Independent ChatGPT review of ARCHITECTURE GENESIS v0.1.
 
-Then determine whether ARCHITECTURE GENESIS v0.1 already exists in historical
-project material.
+Requested in `reviews/HANDOFF_TO_CHATGPT.md`, and standing in
+`reviews/mailbox/BUNNY_TO_CHATGPT.md`.
 
-Do not recreate either artifact from guesses.
+ARCHITECTURE GENESIS v0.1 is DRAFT and awaiting that review. It is not frozen.
+
+Historical recovery was attempted and its result recorded:
+`evidence/recovery/PROMPT_01_RECOVERY.md`. Exact Prompt 01 wording was NOT
+recovered; no historical Genesis existed to preserve. The founder authorized
+proceeding from the repository's canonical requirements with the gap recorded,
+which is what the artifact does.
 
 ## Do NOT do yet
 
+- Do NOT execute Prompt 03 until ChatGPT review of Genesis v0.1 is recorded.
+- Do not treat Genesis v0.1 as approved or frozen.
 - Do not implement Milestone 1.
 - Do not start kernel coding.
 - Do not freeze physical SoC.

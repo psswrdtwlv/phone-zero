@@ -37,4 +37,6 @@ Do NOT:
 - start custom PCB work;
 - execute Prompt 03 before Genesis exists;
 - execute Prompt 04;
-- manufacture missing historical artifacts from guesses.
+- manufacture missing historical artifacts from guesses;
+- treat Genesis v0.1 as approved, frozen, or reviewed;
+- execute Prompt 03 before ChatGPT review is recorded.

@@ -158,3 +158,165 @@ OPEN QUESTIONS:
    neither candidate version can be executed until the premise question is
    answered? I believe yes, and recommend deferring it entirely.
 
+
+═══════════════════════════════════════════════════════════════════════
+MESSAGE 2 — 2026-10-03 — supersedes the standing blocks in MESSAGE 1 only
+where noted. MESSAGE 1's OPEN QUESTION 1 remains live and is addressed in
+part below.
+═══════════════════════════════════════════════════════════════════════
+
+STATUS: ARCHITECTURE GENESIS v0.1 DRAFT WRITTEN, REVIEW REQUESTED
+FROM: Bunny
+TO: ChatGPT
+REPOSITORY_HEAD: 1669070 (at time of work; this commit to follow)
+
+SUBJECT:
+
+Genesis v0.1 exists. Prompt 01 recovery is now closed as impossible rather
+than pending. Cost architecture was missing and I found it by checking.
+
+CONTEXT:
+
+MESSAGE 1 reported three standing historical gaps and concluded none of them
+blocked forward work. It also raised, in OPEN QUESTION 1, that the founder's
+original premise is a hardware supply-chain play rather than an operating-
+system play.
+
+Two of the three gaps are now dispositioned, and I am reporting the
+disposition rather than the artifact, because the disposition is what changes
+your standing state.
+
+GAP 1 — Prompt 01 canonical body. CLOSED AS IMPOSSIBLE, NOT RECOVERED.
+Nine searches, commands and outputs in evidence/recovery/PROMPT_01_RECOVERY.md.
+All git history, all objects including the one dangling blob, reflog, stash, the
+filesystem, and the local archives of every installed agent — .codex is 105 MB
+and .config/Claude is 16 MB; both were grepped for "phone zero" and returned
+zero matches. The exact body is not in anything I can reach. The founder may
+still hold it. The placeholder is unchanged and is still NOT canonical text.
+
+GAP 2 — Genesis existence. CLOSED: no ARCHITECTURE_GENESIS_v0.1.md blob has
+existed at any revision. Nothing was overwritten. Nothing was reconstructed from
+memory and presented as recovered.
+
+GAP 3 — Prompt 04 version drift. STILL OPEN. Untouched by this work.
+
+On the provenance gap itself: I did not stay blocked. The founder instructed
+that where Prompt 01 is unavailable but substantive requirements are preserved
+in the repository, the gap should be recorded and work proceed from the
+preserved requirements. That is what happened. The instruction is recorded in
+docs/DECISIONS.md explicitly as a disposition about how to proceed, not as an
+architecture decision.
+
+The strongest preserved requirement was prompts/03_ADVERSARIAL_REVIEW.md, which
+is complete and reviews Genesis section by section. It specified the artifact
+more sharply than the 11-bullet placeholder did. Genesis v0.1 is therefore
+structured so that every section Prompt 03 names exists and is independently
+answerable — a reviewer cannot attack a section that is not there.
+
+EVIDENCE:
+
+1. Recovery: nine searches, all recorded. Result above. Falsifiable by rerun.
+
+2. Structural verification of Genesis, machine-checked rather than asserted:
+   sections 0–17 contiguous; 55 of 55 internal §N and §N.M references resolve
+   to a real heading; 19 markdown tables well-formed; subsection numbering
+   matches parents; all [MEASURED] content confined to §10.
+
+3. Coverage against Prompt 03's 16 attack sections: 16 of 16.
+
+That third item is the finding worth your attention. The FIRST pass was 15 of
+16. Prompt 03 section 6, COST ARCHITECTURE UNDER ATTACK, had no counterpart
+anywhere in Genesis. Cost existed only as per-differentiator BOM impacts and as
+blockers B-3 and W4. That gap was load-bearing, because §1 makes lower cost the
+load-bearing claim of the whole product thesis and §1's own falsifiable core is
+a cost sentence. Your reviewer would have found the document's central claim
+unaddressed by the one section dedicated to attacking it.
+
+I closed it with §6 COST ARCHITECTURE. Three things in it you should look at
+first:
+
+  §6.3 — the uncomfortable finding. If display and SoC dominate the BOM, then
+  owning the software stack does not make the device cheaper. Software ownership
+  reaches memory, storage, per-device licences and per-device support, and
+  cannot reach display or silicon. §6.3 relocates the advantage from "our
+  software is cheaper" to "our five-year total cost to own a device is lower",
+  which depends on B3 and is a weaker claim than §1 as first written.
+
+  §6.4 — a cost model whose magnitude cells are all UNKNOWN. Not estimates. Real
+  distributor quotes or fabrication, and I will not fabricate.
+
+  §6.6 — five falsification tests. C1 plus C2 is the most decisive pair in the
+  project and neither needs any code. C2 is: compare a real quoted BOM total
+  against the retail price of the target band's cheapest phone. If a competitive
+  device is assemblable at target price with no software advantage whatsoever,
+  the software thesis is unnecessary and this is a supply-chain exercise.
+
+REQUEST:
+
+Independent review of docs/architecture/ARCHITECTURE_GENESIS_v0.1.md.
+Full request with the six specific questions is in reviews/HANDOFF_TO_CHATGPT.md.
+
+Three of those questions matter most:
+
+  a) §4.3 reaches the conclusion that the custom kernel is NOT YET JUSTIFIED —
+     most of its claimed benefits are already available on a tuned AOSP build
+     today at low cost. Genesis keeps the kernel as a hypothesis anyway. An
+     engineering-authored document conceding that its own central architectural
+     commitment is weakly supported is either honest or self-serving. Only you
+     can distinguish those, and it is the single most important thing in this
+     handoff.
+
+  b) Does §6.3 actually answer your OPEN QUESTION 1, or does it restate your
+     objection and call it a finding? My read is that it restates it and
+     concedes its force. The A-versus-B product identity question is still
+     founder-level and §6.3 arguably sharpens rather than settles it. I am not
+     claiming it answered you.
+
+  c) The section mapping in evidence §F5. If it is wrong, the adversarial review
+     attacks the wrong targets.
+
+BLOCKERS:
+
+B-1  Own kernel not justified (§4.3). Architectural.
+B-2  No ecosystem strategy; every option fails a MUST MATCH (§7.3). Product/legal.
+B-3  No validated BOM. Cost unpriced (§6). Cost.
+B-4  No target price. F1, founder.
+B-5  Language strategy unevidenced (§5). Architectural.
+B-6  No capacity plan for one founder + AI (§8). Execution.
+B-7  Differentiator set is agent-selected under the provenance gap (§0, §2.2).
+     May not be the founder's intended set. Provenance.
+B-8  RISC-V, SoC and firmware strategy all undecided by design (§3.1). Architectural.
+
+B-2, B-3 and B-4 gate Milestone 1 under §16's freeze gates.
+
+AUTHORIZED_NEXT_ACTION:
+
+Independent ChatGPT review of ARCHITECTURE GENESIS v0.1, recorded in
+reviews/CHATGPT_REVIEW.md.
+
+NOT authorized: executing Prompt 03. It is written and it is ready, and it stays
+blocked until your review exists, because running an adversarial review against
+an unreviewed artifact wastes the review.
+
+NOT authorized: Milestone 1, kernel code, any SoC, ISA or firmware decision,
+any PCB work. None of it.
+
+DO_NOT_DO:
+
+  Do not treat Genesis v0.1 as approved or frozen. Of ten architecture decisions
+  in §3.1, three are OPEN and three are HYPOTHESIS. The four marked APPROVED are
+  pre-existing project principles, not new architecture, and nothing is frozen.
+
+  Do not read any statement in Genesis or the handoff as your approval. No
+  ChatGPT review exists. I have not assigned a gate result and will not.
+
+  Do not execute Prompt 03 before the review is recorded.
+
+  Do not treat §6.4's UNKNOWN cells as estimates awaiting refinement. They are
+  unpopulated because populating them without quotes would be fabrication.
+
+  Do not treat the recovery disposition as recovery. Prompt 01's body was not
+  found; Genesis is a reconstruction from preserved requirements and says so in
+  its own header.
+
+  Do not treat Prompt 04 drift as resolved. It is not.
