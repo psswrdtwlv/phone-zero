@@ -450,37 +450,84 @@ against any real quote, and this document contains no supplier pricing.**
 | Enclosure | Moderate | **Yes**, mechanically, and it fights repairability (B4/L-items) |
 | Software licences per device | Can be large | **Yes.** Often the largest *software* saving |
 
-### 6.3 The uncomfortable finding
+### 6.3 THE COST-PREMISE QUESTION — unresolved, not answered here
 
-This is the finding most likely to invalidate the product thesis, so it is
-stated plainly rather than buried:
+This is the question ChatGPT's review of the environment probe required Genesis
+to carry rather than assume (`reviews/mailbox/CHATGPT_TO_BUNNY.md`, commit
+`85e4fa7`): **is "cheaper than a flagship at comparable experience" a hardware
+supply-chain play, or a software/platform play?**
 
-> **If the display and the SoC dominate the BOM, then owning the software stack
-> does not make the device cheaper. It makes the device cheaper only if the
-> required RAM, storage, licence cost and per-device support cost can be cut by
-> more than the engineering cost of cutting them.**
+**This section does not answer it. It states what is at stake and what would
+settle it.**
 
-That has a hard consequence:
+An earlier draft of this section concluded the software thesis was "probably a
+false claim" and relocated the advantage to total cost of ownership. That
+conclusion was withdrawn. It assumed the answer to the very question it claimed
+to price. The correction is recorded here because the reasoning error is
+instructive, not because it is embarrassing.
 
-**The cost thesis is bounded by what software can shrink, not by what hardware
-costs.** A purpose-written stack can plausibly reduce required memory footprint
-and storage footprint, and can eliminate per-device licence fees. It cannot
-touch the two largest lines. Therefore:
+#### 6.3.1 What is structurally true, independent of any BOM
 
-- **A "cheaper phone" claim that rests on owning the OS is probably a false
-  claim.** Cheaper is achievable, but the mechanism is supply-chain purchasing
-  and volume, with software as a secondary contributor.
-- **The honest cost thesis is "commercially sourced hardware, purchased well,
-  with a software stack cheap enough to support that it does not consume the
-  margin."** That is a weaker and less romantic claim than §1 as first written.
+Software ownership can influence some cost terms and cannot influence others.
+This is a statement about causal reach, not about magnitude:
 
-This does not kill the project. It relocates the advantage from "our software
-is cheaper" to "our *total cost to own a device for five years* is lower
-because our software is cheaper to support and needs less memory." That claim
-depends on **B3** (§2.2) and is testable by measuring support hours per device.
+| Cost term | Can software/platform choices move it? |
+|---|---|
+| Display panel | **No.** Purchased component |
+| Manufacturing, assembly, test time | **Partly** — design and yield, mechanically |
+| Camera module / ISP cost | **Partly** — by choosing a lower tier the stack can live with |
+| SoC price | **Partly** — not the silicon price itself, but **which SoC tier the stack must require** |
+| Required RAM / storage | **Yes**, directly |
+| Per-device licences | **Yes**, directly and per-device |
+| Support / update cost over lifetime | **Yes**, directly |
+| Integration and bring-up effort | **Yes** — BSP and HAL cost |
+| RF, modem hardware, certification | **No.** Certification is external and legal |
 
-**[OPEN]** Until F1 (§14) states a target price, there is no cost target, so
-none of the above can be evaluated.
+An earlier draft understated this by writing that software "cannot touch" the
+display and the SoC. The correct statement is narrower: software cannot change
+*component prices*, but it can change *which components the design requires* — a
+cheaper SoC tier, a smaller RAM configuration, a lower camera tier. Those are
+real levers, and §2.4's L1/L5 concessions are exactly the act of using them.
+
+#### 6.3.2 What is NOT established
+
+**Whether the movable terms dominate the immovable ones at a realistic volume is
+unknown. Nobody has quoted a BOM for this project.** §6.2's block ordering is an
+`[UNVALIDATED]` working assumption from general industry structure.
+
+So both of the following remain open, and this document deliberately refuses to
+pick one:
+
+- **Reading A — the hardware terms dominate.** Software ownership then buys
+  margin protection and lower per-device cost, not a headline price reduction,
+  and the price advantage comes from purchasing and volume.
+- **Reading B — the movable terms are large enough to matter.** Required RAM and
+  storage configuration, SoC tier, licence elimination and support cost can
+  together shift the achievable price band, making software ownership a genuine
+  contributor to the headline number.
+
+**Reading A and Reading B imply different architectures and different founder
+answers.** Under A, optimising the stack is margin protection and the
+differentiators should lean elsewhere. Under B, footprint work is the highest-
+leverage engineering in the project. This is why it cannot be waved through.
+
+#### 6.3.3 What would settle it
+
+Not argument. In ascending cost:
+
+| # | Evidence required | Settles |
+|---|---|---|
+| P1 | Real distributor quotes for a complete BOM at 10k units | The magnitudes |
+| P2 | BOM total against the retail price of the cheapest device in the target band | Whether any price gap exists at all |
+| P3 | Movable terms priced separately from immovable ones | **Which of A or B holds** |
+| P4 | Required RAM/storage and feasible SoC tier for one fixed workload in our stack vs a tuned AOSP build | Size of the software lever |
+
+P3 is the decision-relevant number and it is **not** derivable from P1–P2 alone.
+Until P3 exists, any claim that this project is a supply-chain play — **including
+the claim this section previously made** — is unsupported in both directions.
+
+**[OPEN]** Until F1 (§14) states a target price and P1–P4 exist, the cost premise
+of §1 is unexamined and §1's falsifiable core cannot be evaluated.
 
 ### 6.4 Cost model structure — deliberately unpopulated
 

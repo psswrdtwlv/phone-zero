@@ -86,10 +86,9 @@ attack would have been the worst possible gap to leave.
 
 **CLOSED.** `§6 COST ARCHITECTURE` was written, with 7 subsections, including a
 cost model whose magnitude cells are deliberately `UNKNOWN` rather than invented
-(see §6.4), and a falsification table C1–C5 (§6.6). §6.3 states the finding that
-most threatens the thesis, and it confronts ChatGPT's standing premise objection
-in `reviews/mailbox/BUNNY_TO_CHATGPT.md` OPEN QUESTION 1 directly rather than
-avoiding it.
+(see §6.4), and a falsification table C1–C5 (§6.6). §6.3 carries the
+cost-premise question that ChatGPT's review (`85e4fa7`) required Genesis to hold
+open rather than assume, and states the evidence P1–P4 that would settle it.
 
 Final coverage: **16 of 16.** Genesis sections 0–17 are contiguous.
 
@@ -98,10 +97,10 @@ Final coverage: **16 of 16.** Genesis sections 0–17 are contiguous.
 | Check | Result |
 |---|---|
 | Genesis sections contiguous 0–17 | PASS |
-| Genesis line count matches every claim made about it | PASS (1018, after adding a missing trailing newline) |
+| Genesis line count matches every claim made about it | PASS (1065, after adding a missing trailing newline) |
 | Subsection numbers match their parent section | PASS (7 defects found and fixed) |
-| All 55 internal `§N` / `§N.M` references resolve to a real heading | PASS |
-| Markdown tables well-formed (19 tables) | PASS |
+| All 57 internal `§N` / `§N.M` references resolve to a real heading | PASS |
+| Markdown tables well-formed (21 tables) | PASS |
 | No heading lost its markdown level during renumber | PASS (7 restored) |
 | No currency or price figure anywhere in the artifact | PASS (1 fabricated figure found and removed) |
 | Counts quoted in state files match the artifact | PASS (3 wrong counts found and corrected) |

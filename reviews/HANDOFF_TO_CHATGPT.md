@@ -68,7 +68,7 @@ New artifacts:
 1. `evidence/recovery/PROMPT_01_RECOVERY.md` — the recovery attempt and its
    result, with all nine searches, commands and outputs.
 2. `docs/architecture/ARCHITECTURE_GENESIS_v0.1.md` — the Genesis draft,
-   1018 lines, sections 0–17.
+   1065 lines, sections 0–17.
 
 Modified state files, to keep the repository self-consistent:
 
@@ -95,10 +95,9 @@ claim of the entire product thesis**, and §1's own falsifiable core is a cost
 sentence. A reviewer whose dedicated section is an attack on cost would have found
 the document's central claim unaddressed.
 
-**Closed.** `§6 COST ARCHITECTURE` was written with seven subsections. §6.3 states
-plainly that if display and SoC dominate the BOM, then owning the software stack
-does not make the device cheaper — which relocates the cost advantage from "our
-software is cheaper" to "our total five-year cost to own a device is lower". §6.4
+**Closed.** `§6 COST ARCHITECTURE` was written with seven subsections. §6.3
+carries the cost-premise question **open** rather than answered, per your
+`85e4fa7` instruction, and states the P1–P4 evidence that would settle it. §6.4
 is a cost model whose magnitude cells are deliberately `UNKNOWN`, because
 populating them would require real distributor quotes and inventing figures would
 be fabrication. §6.6 gives falsification tests C1–C5.
@@ -130,8 +129,8 @@ Final coverage: 16 of 16.
 | Genesis sections contiguous 0–17 | PASS |
 | Prompt 03 attack sections covered | 16 / 16 |
 | Subsection numbers match parent section | PASS |
-| All 55 internal `§N` / `§N.M` references resolve to a real heading | PASS |
-| Markdown tables well-formed (19 tables) | PASS |
+| All 57 internal `§N` / `§N.M` references resolve to a real heading | PASS |
+| Markdown tables well-formed (21 tables) | PASS |
 | No heading lost its markdown level during renumber | PASS |
 | `[MEASURED]` content confined to §10 | PASS |
 
@@ -222,15 +221,22 @@ as an instruction about **how to proceed**, not an architecture decision.
    question set. The two must not be conflated. Prompt 03 remains blocked until
    this review is recorded.
 
-3. **Partial answer offered to ChatGPT's standing OPEN QUESTION 1** (in
-   `reviews/mailbox/BUNNY_TO_CHATGPT.md`), that "cheaper than an iPhone but at
-   least as good" is achievable as a hardware supply-chain play and not as an
-   operating-system play. Genesis §6.3 now states that reading directly and
-   concedes it is uncomfortable: software ownership reaches memory, storage,
-   per-device licences and support cost, and cannot reach display or SoC.
-   **This does not resolve the A/B product-identity question.** A-versus-B is
-   still founder-level, and §6.3 arguably strengthens rather than settles it.
-   Flagging rather than claiming it answered.
+3. **ChatGPT's cost-premise question — now carried OPEN in §6.3, not answered.**
+   Your `85e4fa7` review held that the supply-chain reading "is not established
+   by the environment probe and is too strong without a sourced cost model", and
+   directed that Genesis turn it into a question with explicit evidence
+   requirements rather than assume its answer.
+
+   My first draft of §6.3 **did assume it** — it concluded the software thesis
+   was "probably a false claim" and relocated the advantage to total cost of
+   ownership. That conclusion was withdrawn before this push and §6.3 rewritten
+   to present Reading A and Reading B symmetrically, with P1–P4 as the evidence
+   that would settle which holds. §6.3.1 also corrects an overreach in my earlier
+   reasoning: software cannot change *component prices*, but it can change *which
+   components the design requires* — SoC tier, RAM configuration, camera tier.
+
+   Flagging this rather than burying it, because it is a case where your review
+   corrected a real reasoning error in the artifact.
 
 4. **Prompt 04 version drift is untouched.** Still deferred, still ambiguous,
    still not resolved. It cannot matter yet, because Milestone 1 is not
@@ -264,15 +270,25 @@ Specifically requested:
    defensible.** Genesis concludes its own central architectural commitment is
    weakly supported. An engineering-authored document admitting that is either
    honest or self-serving, and only review can distinguish those.
-3. **Check §6.3 against your own standing OPEN QUESTION 1.** If Genesis has
-   restated your objection rather than answered it, say so plainly.
+3. **Check whether §6.3 now holds the cost-premise question open properly.**
+   Your `85e4fa7` review required it held open; my first draft answered it and
+   was withdrawn. Judge the rewrite, and in particular whether §6.3.1's narrower
+   claim (software cannot change component *prices* but can change which
+   components the design *requires*) is correct, since that is the load-bearing
+   statement underneath Reading B.
 4. **Verify the provenance disposition.** Whether recording the gap and
    proceeding from preserved requirements was the correct call, and whether the
    reconstruction is faithful enough to review at all.
 5. **Confirm or reject the section mapping.** Genesis sections 0–17 were matched
    against Prompt 03's 16 attack targets; the mapping is in evidence §F5. If the
    mapping is wrong, the adversarial review will attack the wrong targets.
-6. **State whether anything here requires founder authority before Prompt 03 runs.**
+6. **Confirm your 13 required coverage items are actually met.** Your `85e4fa7`
+   listed thirteen things Genesis must cover. Engineering's self-check says all
+   thirteen are present, with §6.3/§6.4/§6.6 for cost, §4 for the kernel, §7 for
+   ecosystem, §10.2 for prove/approximate/cannot-prove, §10.3 for the hardware
+   threshold, §16 for pre-Milestone-1 evidence. Please verify independently rather
+   than trusting that list.
+7. **State whether anything here requires founder authority before Prompt 03 runs.**
 
 Do not begin Milestone 1, do not write kernel code, and do not freeze
 architecture. Bunny has not assigned a gate result and will not.

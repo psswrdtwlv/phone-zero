@@ -218,7 +218,7 @@ EVIDENCE:
 1. Recovery: nine searches, all recorded. Result above. Falsifiable by rerun.
 
 2. Structural verification of Genesis, machine-checked rather than asserted:
-   sections 0–17 contiguous; 55 of 55 internal §N and §N.M references resolve
+   sections 0–17 contiguous; 57 of 57 internal §N and §N.M references resolve
    to a real heading; 19 markdown tables well-formed; subsection numbering
    matches parents; all [MEASURED] content confined to §10.
 
@@ -235,12 +235,27 @@ unaddressed by the one section dedicated to attacking it.
 I closed it with §6 COST ARCHITECTURE. Three things in it you should look at
 first:
 
-  §6.3 — the uncomfortable finding. If display and SoC dominate the BOM, then
-  owning the software stack does not make the device cheaper. Software ownership
-  reaches memory, storage, per-device licences and per-device support, and
-  cannot reach display or silicon. §6.3 relocates the advantage from "our
-  software is cheaper" to "our five-year total cost to own a device is lower",
-  which depends on B3 and is a weaker claim than §1 as first written.
+  §6.3 — the cost-premise question, HELD OPEN per your 85e4fa7 instruction.
+  Your review held that the supply-chain reading "is not established by the
+  environment probe and is too strong without a sourced cost model", and that
+  which effects dominate at realistic volumes "is precisely something Genesis
+  must price rather than assume".
+
+  My first draft of §6.3 assumed exactly that. It concluded the software thesis
+  was "probably a false claim" and relocated the advantage to total cost of
+  ownership. That was your objection restated as my conclusion, and it was
+  withdrawn before this push. §6.3 now presents Reading A (hardware dominates)
+  and Reading B (movable terms are large enough to matter) symmetrically, states
+  that nobody has quoted a BOM for this project, and gives P1–P4 as the evidence
+  that would settle which holds. P3 — movable terms priced separately from
+  immovable — is the decision-relevant number and is not derivable from P1–P2.
+
+  §6.3.1 also corrects an overreach in my own earlier reasoning. I had written
+  that software cannot touch the display or the SoC. The narrower true statement
+  is that software cannot change component PRICES, but it can change which
+  components the design REQUIRES — SoC tier, RAM configuration, camera tier.
+  Those are real levers, and L1/L5 are exactly the act of using them. Reading B
+  rests on this corrected claim, so please check it specifically.
 
   §6.4 — a cost model whose magnitude cells are all UNKNOWN. Not estimates. Real
   distributor quotes or fabrication, and I will not fabricate.
@@ -266,14 +281,17 @@ Three of those questions matter most:
      can distinguish those, and it is the single most important thing in this
      handoff.
 
-  b) Does §6.3 actually answer your OPEN QUESTION 1, or does it restate your
-     objection and call it a finding? My read is that it restates it and
-     concedes its force. The A-versus-B product identity question is still
-     founder-level and §6.3 arguably sharpens rather than settles it. I am not
-     claiming it answered you.
+  b) Does §6.3 now hold the cost-premise question open the way your review
+     required, after I withdrew the answer? Judge the rewrite rather than
+     trusting my report that I removed it. Reading B in particular rests on
+     §6.3.1's narrower claim — software cannot change component prices but can
+     change which components the design requires — and that is the statement
+     most worth attacking.
 
-  c) The section mapping in evidence §F5. If it is wrong, the adversarial review
-     attacks the wrong targets.
+  c) Are your thirteen required coverage items actually met? Engineering's
+     self-check says yes, and lists where each lives, but that is engineering
+     grading its own work against a checklist it read from your review. Please
+     verify independently.
 
 BLOCKERS:
 
