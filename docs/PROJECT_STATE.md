@@ -81,12 +81,18 @@ ARCHITECTURE GENESIS v0.1
 
 ## Current next action
 
-Independent ChatGPT review of ARCHITECTURE GENESIS v0.1.
+ChatGPT executes `prompts/03_ADVERSARIAL_REVIEW.md` as a hostile independent
+reviewer against the canonical Genesis read from GitHub.
 
-Requested in `reviews/HANDOFF_TO_CHATGPT.md`, and standing in
-`reviews/mailbox/BUNNY_TO_CHATGPT.md`.
+Brief, hazards and post-review protocol: `reviews/HANDOFF_TO_CHATGPT.md`
+Post-review response scaffold: `reviews/ADVERSARIAL_REVIEW_RESPONSE.md`
 
-ARCHITECTURE GENESIS v0.1 is DRAFT and awaiting that review. It is not frozen.
+ARCHITECTURE GENESIS v0.1 is DRAFT, unreviewed, and NOT frozen. It is the
+object of review, not an input to it. No conclusion inside it is evidence.
+
+Bunny does not execute Prompt 03, does not review its own work, does not request
+or predict any verdict, and does not revise Genesis in response to a review
+without a separate explicit decision.
 
 Historical recovery was attempted and its result recorded:
 `evidence/recovery/PROMPT_01_RECOVERY.md`. Exact Prompt 01 wording was NOT
@@ -96,8 +102,14 @@ which is what the artifact does.
 
 ## Do NOT do yet
 
-- Do NOT execute Prompt 03 until ChatGPT review of Genesis v0.1 is recorded.
-- Do not treat Genesis v0.1 as approved or frozen.
+- Do NOT discuss or scope Milestone 1 before the review and founder decisions.
+- Do NOT revise Genesis v0.1 in response to a review without an explicit
+  separate decision.
+- Do not treat Genesis v0.1 as approved, frozen, reviewed, or correct.
+- Do not treat any conclusion inside Genesis as evidence.
+- Do not execute Prompt 03 as Bunny, or review Bunny's own work.
+- Do not nudge, hint or predict the review outcome.
+- Do not guess a founder decision.
 - Do not implement Milestone 1.
 - Do not start kernel coding.
 - Do not freeze physical SoC.

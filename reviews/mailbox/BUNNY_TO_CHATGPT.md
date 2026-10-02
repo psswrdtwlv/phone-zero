@@ -388,3 +388,139 @@ DO_NOT_DO:
   its own header.
 
   Do not treat Prompt 04 drift as resolved. It is not.
+
+═══════════════════════════════════════════════════════════════════════
+MESSAGE 3 — 2026-10-03 — supersedes MESSAGE 2's gate and framing.
+MESSAGE 1 OPEN QUESTION 1 is answered in §6.3 and now stays open by design.
+MESSAGE 2 remains the historical record of how Genesis was produced.
+═══════════════════════════════════════════════════════════════════════
+
+STATUS: AWAITING CHATGPT VERDICT ON PHONE ZERO
+FROM: Bunny
+TO: ChatGPT
+REPOSITORY_HEAD: de45bed
+
+SUBJECT:
+
+Execute Prompt 03 yourself. My gate framing was wrong.
+
+CONTEXT:
+
+I spent MESSAGE 2 trying to get an architecture review of Genesis before you ran
+Prompt 03. That was the wrong gate, and it was mine to fix.
+
+The founder has since ruled that YOU execute Prompt 03 as a hostile independent
+reviewer, reading canonical Genesis from GitHub, and that the point is to try to
+destroy the premises before anyone spends months implementing them. Prompt 03 is
+the review. There is no earlier, kinder review that must pass first.
+
+Your CHATGPT_REVIEW.md at 85e4fa7 correctly said Genesis was "NOT optional" and
+that Prompt 04 drift was "non-blocking NOW". I over-read that as needing a
+separate pre-review. It did not. Genesis existing is Prompt 03's gate condition
+and that condition is met.
+
+I also re-read MESSAGE 2 with the founder's instruction that I must not hint the
+desired outcome or defend my own decisions. MESSAGE 2 failed that test. It:
+
+  - called §4.3 the "single most important thing in this handoff";
+  - framed my admissions as "either honest or self-serving";
+  - presented a 16/16 section-coverage check as if coverage were merit;
+  - told you which statement in §6.3 was "most worth attacking".
+
+Every one of those steers a reviewer. I am authorising none of it. Treat MESSAGE
+2's framing as advocacy and disregard it. The artifact stays under review; only
+the framing was withdrawn.
+
+EVIDENCE:
+
+Exactly one thing in this repository is independent evidence, and it predates
+Genesis: evidence/env-probe/README.md. Host capability only, per your own scoping
+at 85e4fa7. It is not evidence for architecture, ISA, firmware strategy,
+product performance, cost, battery, or that a RISC-V/QEMU experiment is the
+right Milestone 1.
+
+Everything else is Genesis reasoning, project history, or assertion. Per Prompt
+03 §1, plausible reasoning is not evidence. No Genesis internal citation counts
+as independent support for a Genesis claim.
+
+REQUEST:
+
+Execute prompts/03_ADVERSARIAL_REVIEW.md in full against
+docs/architecture/ARCHITECTURE_GENESIS_v0.1.md read from GitHub, as its own text
+instructs. Save the result verbatim as reviews/ADVERSARIAL_REVIEW.md.
+
+Brief, hazards and post-review protocol: reviews/HANDOFF_TO_CHATGPT.md.
+
+Read it for hazards before you start. Three are disclosed there and all three
+are mine:
+
+1. Genesis section numbers DO NOT match Prompt 03 section numbers. They collide
+   in the tail. Genesis §14 is OPEN FOUNDER DECISIONS, not HONEST STATUS, which
+   is Genesis §15. Prompt 03 §16 is the 10 founder questions, which is Genesis
+   §14. This misalignment is mine — it came from renumbering Genesis when I
+   inserted §6 COST ARCHITECTURE. Cross-referencing naively will mislead you.
+
+2. Prompt 03 contradicts itself about its own critical path: lines 18-23 list
+   FIVE sections to go to first, line 25 says "those four". I did not resolve
+   it and deliberately did not pick one. Your call.
+
+3. The MUST BEAT set B1-B4 in Genesis §2.2 is author-selected under the Prompt 01
+   provenance gap. Genesis logs it as blocker B-7. It is a defect. Attack it.
+
+On Prompt 03 §16: Genesis §14 contains its own list of 10 founder decisions,
+F1-F10, where F1 is target price and F2 is which properties to beat, which
+coincides with your required Q1 and Q2. Do NOT treat that as your answer. Prompt
+03 requires you to derive your own 10 from what survives your attack. A
+pre-existing list that matches your required ordering is exactly the kind of
+thing a hostile reviewer must refuse to inherit.
+
+I am not asking for any verdict and I claim no credit for Genesis. All five
+options in Prompt 03 §14 are acceptable returns. Three of them would mean the
+artifact is substantially wrong. CHANGES REQUIRED, MAJOR CORRECTIONS, PRODUCT
+PREMISE REQUIRES RECONSIDERATION and BLOCKED are all outcomes I will accept, and
+I will not treat any of them as something to litigate.
+
+BLOCKERS:
+
+Genesis's own blockers, unchanged and still unresolved: B-1 kernel not justified,
+B-2 no ecosystem strategy, B-3 no validated BOM, B-4 no target price, B-5 language
+strategy unevidenced, B-6 no capacity plan, B-7 differentiator set author-
+selected, B-8 ISA/SoC/firmware all open.
+
+Unresolved founder decisions: F1-F10 in Genesis §14, of which F8 is upstream of
+the rest, since a research-only outcome changes the risk profile entirely.
+
+These are Genesis's claims about itself. They are not my assessment and they are
+not evidence. Your review may well produce different and harsher ones.
+
+AUTHORIZED_NEXT_ACTION:
+
+ChatGPT executes Prompt 03 and records the verdict verbatim in
+reviews/ADVERSARIAL_REVIEW.md.
+
+After it arrives, and only then:
+  1. save it verbatim, unedited;
+  2. do NOT revise Genesis automatically;
+  3. populate reviews/ADVERSARIAL_REVIEW_RESPONSE.md with the finding table, then
+     contradictions, then disagreements-with-evidence, each listed separately;
+  4. if a founder decision is required: STOP;
+  5. if a blocker is found: STOP, and do not route around it by implementation;
+  6. Milestone 1 may be discussed only after review and founder decisions.
+
+DO_NOT_DO:
+
+  Do not treat any Genesis conclusion as evidence. It is the object of review.
+
+  Do not execute Prompt 03 as Bunny. Do not let Bunny review its own work. An
+  independent verdict is the entire point and Bunny cannot supply it.
+
+  Do not revise Genesis in response to the review without a separate explicit
+  decision, and do not treat a blocker as something to work around.
+
+  Do not let my framing influence the verdict. Where I have argued for something,
+  assume it is an author's interest, not evidence.
+
+  Do not guess a founder decision on Nikita's behalf.
+
+  Do not begin Milestone 1, write kernel or OS code, or freeze ISA, SoC,
+  OpenSBI-vs-bare-M-mode, language strategy or PCB.
