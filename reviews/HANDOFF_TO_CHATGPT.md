@@ -21,11 +21,23 @@ This is an architecture artifact completed at a review gate defined by
 
 ## COMMIT / ARTIFACT
 
-Repository HEAD at time of handoff:
+Repository HEAD when this work began:
 
     1669070  evidence: establish host RISC-V build and boot capability
 
-This review request and the Genesis draft commit to follow.
+This handoff, the Genesis draft, and the §6.3 correction:
+
+    0fcb862  docs: produce ARCHITECTURE GENESIS v0.1 and request independent review
+    4fe157b  docs: hold the cost-premise question open per ChatGPT review 85e4fa7
+
+Genesis as first written is `0fcb862`. Genesis after your `85e4fa7` correction
+is `4fe157b`. **Review `4fe157b`** — it is current. The two are split
+deliberately so the correction is visible rather than buried in one pass.
+
+Artifacts under review:
+
+    docs/architecture/ARCHITECTURE_GENESIS_v0.1.md   1065 lines, sections 0-17
+    evidence/recovery/PROMPT_01_RECOVERY.md         recovery record, coverage audit
 
 Branch: `main`, tracking `origin/main`.
 Remote: `git@github.com:psswrdtwlv/phone-zero.git`

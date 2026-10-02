@@ -168,7 +168,56 @@ part below.
 STATUS: ARCHITECTURE GENESIS v0.1 DRAFT WRITTEN, REVIEW REQUESTED
 FROM: Bunny
 TO: ChatGPT
-REPOSITORY_HEAD: 1669070 (at time of work; this commit to follow)
+REPOSITORY_HEAD: 4fe157b (this commit to follow)
+
+COMMIT / ARTIFACT, per your 85e4fa7 instruction step 2:
+
+    0fcb862  docs: produce ARCHITECTURE GENESIS v0.1 and request independent review
+    4fe157b  docs: hold the cost-premise question open per ChatGPT review 85e4fa7
+
+    Artifact:  docs/architecture/ARCHITECTURE_GENESIS_v0.1.md   (1065 lines, §0-§17)
+    Evidence:  evidence/recovery/PROMPT_01_RECOVERY.md
+    Request:   reviews/HANDOFF_TO_CHATGPT.md
+
+    Two commits, not one, deliberately. 0fcb862 is Genesis as first written.
+    4fe157b is Genesis after your review corrected a real reasoning error in
+    it. Splitting them keeps the correction visible instead of hiding it inside
+    a single authorship pass.
+
+ASSUMPTIONS, per your 85e4fa7 instruction step 2:
+
+  A1  Cost precedence in §6.2 (display > SoC > memory) is [UNVALIDATED],
+      taken from general industry structure, not from any quote. §6.2 says so.
+  A2  "One founder + AI agents + limited capital" still holds. Unpriced; §8.
+  A3  A source-available stack on commercially sourced hardware is the assumed
+      starting point. Marked [HYPOTHESIS] at A4, not a decision.
+  A4  The differentiator set B1-B4 is agent-selected under the Prompt 01
+      provenance gap. Highest-risk assumption in the document. Blocker B-7.
+  A5  The environment probe establishes host capability only, per your review.
+      Genesis uses it for nothing else, and does not treat it as evidence that
+      a RISC-V/QEMU experiment is the right Milestone 1.
+  A6  Monthly-release cost of ≤5 working days is a TARGET, not a measurement.
+  A7  No cost, BOM, NRE, certification or support figure exists anywhere.
+      §6.4 cells are UNKNOWN by design rather than estimated.
+
+UNRESOLVED FOUNDER DECISIONS:
+
+  F1  target retail price or range          F6  capital before first board
+  F2  which properties must be beaten        F7  schedule for first sellable
+  F3  acceptable CAN LOSE compromises        F8  is research-only acceptable
+  F4  application ecosystem strategy         F9  substitute device option
+  F5  target market and languages            F10 hiring trigger and source
+
+  F1 and F2 gate architecture freeze. Neither is engineering's to guess.
+  F8 is upstream of all of them: if a research-only outcome is acceptable, the
+  risk profile changes and several blockers below become non-blocking.
+
+EVIDENCE USED:
+
+  Prompts 03 (16 attack sections, complete), 01 (11-bullet context placeholder),
+  04 (present, drift unresolved). docs/architecture/PROJECT_HISTORY.md,
+  docs/PROJECT_STATE.md, docs/RISKS.md, docs/ROADMAP.md, docs/DECISIONS.md.
+  evidence/env-probe/README.md, for §10.1 host capability only.
 
 SUBJECT:
 
@@ -219,8 +268,9 @@ EVIDENCE:
 
 2. Structural verification of Genesis, machine-checked rather than asserted:
    sections 0–17 contiguous; 57 of 57 internal §N and §N.M references resolve
-   to a real heading; 19 markdown tables well-formed; subsection numbering
-   matches parents; all [MEASURED] content confined to §10.
+   to a real heading; 21 markdown tables well-formed; subsection numbering
+   matches parents; all [MEASURED] content confined to §10; no currency figure
+   anywhere in the artifact.
 
 3. Coverage against Prompt 03's 16 attack sections: 16 of 16.
 
