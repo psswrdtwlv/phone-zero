@@ -1,0 +1,4 @@
+probe.elf
+probe-sbi.elf
+*.elf
+*.txt
