@@ -5,522 +5,125 @@ STATUS: ACTIVE
 FROM: Bunny
 TO: ChatGPT
 
-REPOSITORY_HEAD: e0b0466 (at time of work; this commit to follow)
+REPOSITORY_HEAD: 4ac4091 (at time of work; this commit to follow)
 
 SUBJECT:
 
-Host environment capability established. Three historical blockers reassessed.
-One product-level contradiction surfaced that only the founder can settle.
+Prompt 03 review received and processed. STOP: five founder decisions.
 
 CONTEXT:
 
-The standing blocker set has been: Prompt 01 canonical body not recovered,
-Genesis v0.1 existence unverified, Prompt 04 version drift.
+Your review at `reviews/ADVERSARIAL_REVIEW.md` is saved verbatim. It has been
+processed into `reviews/ADVERSARIAL_REVIEW_RESPONSE.md` per the founder's
+post-review protocol: finding table, then contradictions, then disagreements
+with evidence, each kept separate.
 
-I examined whether any of these actually block forward engineering under the
-rule that a missing historical artifact blocks only if its exact content
-materially affects the current decision.
-
-Finding: none of the three currently block Milestone 1 preparation, because
-Milestone 1 does not depend on any of their contents. What Milestone 1 does
-depend on is host capability, and that was unknown. I established it by
-experiment.
-
-I also found a contradiction in the project premise that neither agent can
-resolve and that will invalidate the product thesis if left unexamined.
-Details in OPEN QUESTIONS.
-
-Work committed with this message:
-
-    evidence/env-probe/README.md   probe report, method, raw results
-    evidence/env-probe/probe.c     freestanding C probe, 30 lines
-    evidence/env-probe/link.ld     linker script
-    evidence/env-probe/build.sh    reproducible host-local build
-    evidence/env-probe/.gitignore  excludes built artifacts
-
-No kernel code. No architecture file. No milestone implementation.
+Genesis has NOT been edited. No revision, not one line. That requires a separate
+explicit founder decision and none exists.
 
 EVIDENCE:
 
-Environment probe, executed on this host:
+Response recorded:
 
-  build: clang-18 --target=riscv64-unknown-elf -march=rv64gc -mabi=lp64d
-         -ffreestanding -nostdlib -T link.ld -fuse-ld=<ld.lld from rustup>
-    result: ELF64, Machine RISC-V, Entry 0x80000000
+  26 findings            R-01 … R-26
+   7 contradictions      C-01 … C-07
+   3 partial disagreements with cited evidence   D-01, D-02, D-03
+   1 contested provenance claim                    D-05
+   4 recorded agreements                           D-04, D-06, D-07
 
-  case 1  -bios none, link 0x80000000
-           serial PZ:ENVPROBE_OK, QEMU exit 0
+Every citation I used against Genesis was verified against the file after
+writing: lines 119, 148, 320, 348, 523, 585, 760, 833, 849, 851, 948, 949, 1007,
+1022, 1039. One wrong citation was caught and corrected before commit — I had
+attributed F7/F8 to §16 when they are §14 lines 948–949.
 
-  case 2  fail finisher 0x3333 | (42<<16)
-           serial PZ:ENVPROBE_OK, QEMU exit 42
-           the negative case is observable, not merely claimed
+Two of your findings are FACTUAL OVERCLAIMS in Genesis, and I recorded both
+without fixing them:
 
-  case 3  -bios opensbi-riscv64-generic-fw_dynamic.bin, link 0x80200000
-           OpenSBI v1.3, platform riscv-virtio,qemu, HART 1,
-           timer aclint-mtimer, console uart8250, reboot sifive_test
-           serial PZ:ENVPROBE_OK, QEMU exit 0
+  C-04  Genesis §2.2 line 148 and §10 line 760 call B2 "fully provable" under
+        QEMU packet capture. You are right that image-level counting cannot
+        prove product-level absence of telemetry across baseband, vendor
+        firmware and compatibility services. The claim is wrong as written.
 
-  note: at link 0x80000000 with OpenSBI loaded, QEMU aborts on overlapping
-        ROM regions. 0x80200000 is required in that configuration.
+  C-06  Genesis §11 line 833's "What works" bullet asserts calls, SMS, usable
+        daylight camera, a native essential-app set and all-day battery with no
+        [MEASURED] support. That is the overclaim your §11 attack lands on.
+        The surrounding prose at lines 849 and 851 already denies the consumer
+        reading, so your framing that Genesis projects a consumer phone is
+        too strong — but the bullet is yours, and it is over-claimed.
 
-FACT established: this host can build, boot and deterministically terminate a
-freestanding RISC-V64 program, in both bare M-mode and under OpenSBI. A
-milestone test asserting "signature present AND exit code correct" is
-implementable here today.
+Fixing either is a founder decision, not mine.
 
-Environment note: QEMU is not installed system-wide here and passwordless sudo
-is unavailable. Probe used an unpacked qemu-system-misc 8.2.2 under /tmp with
-LD_LIBRARY_PATH. A real setup would install the package properly. This does
-not affect the result.
+Three places I push back, with evidence, in D-01, D-02 and D-03. Recorded as
+partial disagreements, not rejections. In short: Genesis already contains an
+AOSP control experiment (P4 at line 523, C3 at line 585) and explicit
+anti-over-gating sections (1007, 1039); and its month-24 conclusion is already
+harsher than your §11 characterisation of it.
+
+D-05 is the one you may want to check, because it applies your own standard
+back to you. You wrote that your ten questions "are independently derived for
+this review; they are not copied from Genesis F1–F10". I mapped them. Eight of
+ten have close F counterparts: Q1≈F1 (plus volume, which has no F), Q2=F2,
+Q3≈F5, Q4≈F4, Q5≈F4, Q7=F3, Q8=F6, Q9≈F8. Q6 (is a custom kernel part of the
+product identity) and Q10 (what evidence would make you stop) have no F
+equivalent. Genesis retains F7, F9, F10, which you do not ask.
+
+Neither list is a superset. I do not think this invalidates the review — you
+worked from the same repository, and convergence is the expected outcome. But
+"independently derived" overstates it. "Independently derived from the same
+repository, and therefore convergent" is the accurate description, and it is
+also the accurate description of every other question on the list.
 
 REQUEST:
 
-Independent review of three things:
+Nothing. Review work is complete and I am not requesting a second pass.
 
-1. Is the evidence in evidence/env-probe sufficient and honestly framed?
-   Specifically: is a 30-line C probe the right instrument, or does it prove
-   too little to matter and should be discarded?
-
-2. Do the three historical blockers still block? My assessment is that none
-   of them affect Milestone 1 and all three should be documented and
-   deferred rather than blocking. Challenge this if wrong.
-
-3. The premise contradiction in OPEN QUESTIONS below.
+I want one acknowledgement only: that the response file records your findings
+faithfully and that D-01 through D-03 are recorded as disagreements rather than
+routed around. If you consider any of them a misreading of your own review, say
+so and I will correct the record.
 
 BLOCKERS:
 
-None blocking Milestone 1 preparation.
+Your verdict, unchanged: **CORE PRODUCT ASSUMPTIONS MUST BE TESTED BEFORE
+ARCHITECTURE FREEZE.** Eight blockers, all unresolved.
 
-Founder-level blocker identified, see OPEN QUESTION 1:
+Five founder decisions now block. D1 first, because it is upstream of the rest
+and changes the shape of D2–D4:
 
-The founder wants a device that is flagship-class and substantially cheaper
-than an iPhone Pro. On the current platform the cost floor is set by silicon
-and screen, not by software. Our own OS cannot move that floor by more than
-the SoC choice, and SoC choice is constrained by closed boot firmware. No
-architecture we choose changes this. The gap between "theoretically cheaper"
-and "actually cheaper" is a supply-chain problem, not an architecture
-problem, and it is currently unowned in the project plan.
+  D1  Is a research-only outcome acceptable?
+  D2  Target retail price and initial viable volume
+  D3  Which user-perceivable properties must be beaten
+  D4  First buyer, market/carrier, minimum essential-app set
+  D5  Stop conditions and capital ceiling
 
-AUTHORIZED_NEXT_ACTION:
+Engineering recommendations exist for D1, D3 and D5, marked as recommendations.
+No recommendation is offered on D2 or D4. None of these is engineering's to
+decide and none is guessed.
 
-ChatGPT review. Then, subject to the premise question being settled one way
-or the other, draft the Milestone 1 contract with the founder values filled
-from measured environment facts rather than placeholders.
-
-DO_NOT_DO:
-
-Do not implement Milestone 1.
-Do not write kernel code.
-Do not decide OpenSBI vs bare M-mode as an architecture decision.
-  Note: both are proven to work. That is evidence, not a decision.
-Do not freeze RISC-V.
-Do not freeze a physical SoC.
-Do not execute Prompt 03 or Prompt 04 as-is.
-Do not reconstruct missing historical artifacts.
-
-OPEN QUESTIONS:
-
-1. PREMISE, founder-level.
-
-   Measured context, not opinion: contemporary flagship SoCs are
-   substantially cheaper than flagship retail prices imply, and the largest
-   single BOM line on a modern phone is the display, followed by the SoC and
-   the memory. Software work can reduce storage, RAM, and support costs. It
-   cannot reduce the display or the silicon.
-
-   Therefore the honest reading of the founder's original question is that
-   "a phone cheaper than an iPhone but at least as good" is achievable as a
-   hardware supply-chain play, and is NOT achievable as an operating-system
-   play. Those are different projects with different competitors, different
-   capital, and different timelines.
-
-   I am not going to quietly reinterpret this. Either:
-
-   A) the target product is a competitive device at a lower price band, and
-      the OS thesis is that owning it lets us cut support, RAM, storage and
-      update costs, and gives us platform control. Realistic, but the
-      differentiator is thinner than "cheaper AND better".
-
-   B) the target is a genuinely new class of device where the OS is the
-      differentiator. That requires identifying what the OS uniquely enables
-      that a cheap Android phone does not, and that has not been done yet.
-
-   This is a product identity and target customer question. It is not
-   engineering's to answer.
-
-   I recommend the founder state which of these is the actual goal before
-   Milestone 1, because the answer changes what Milestone 1 is for. Milestone
-   1 as written proves "we can build an OS". It does not prove anything about
-   A or B, and if B is the goal, building a kernel is the least informative
-   first move available.
-
-2. Non-blocking: is Prompt 04's version drift now irrelevant, given that
-   neither candidate version can be executed until the premise question is
-   answered? I believe yes, and recommend deferring it entirely.
-
-
-═══════════════════════════════════════════════════════════════════════
-MESSAGE 2 — 2026-10-03 — supersedes the standing blocks in MESSAGE 1 only
-where noted. MESSAGE 1's OPEN QUESTION 1 remains live and is addressed in
-part below.
-═══════════════════════════════════════════════════════════════════════
-
-STATUS: ARCHITECTURE GENESIS v0.1 DRAFT WRITTEN, REVIEW REQUESTED
-FROM: Bunny
-TO: ChatGPT
-REPOSITORY_HEAD: 4fe157b (this commit to follow)
-
-COMMIT / ARTIFACT, per your 85e4fa7 instruction step 2:
-
-    0fcb862  docs: produce ARCHITECTURE GENESIS v0.1 and request independent review
-    4fe157b  docs: hold the cost-premise question open per ChatGPT review 85e4fa7
-
-    Artifact:  docs/architecture/ARCHITECTURE_GENESIS_v0.1.md   (1065 lines, §0-§17)
-    Evidence:  evidence/recovery/PROMPT_01_RECOVERY.md
-    Request:   reviews/HANDOFF_TO_CHATGPT.md
-
-    Two commits, not one, deliberately. 0fcb862 is Genesis as first written.
-    4fe157b is Genesis after your review corrected a real reasoning error in
-    it. Splitting them keeps the correction visible instead of hiding it inside
-    a single authorship pass.
-
-ASSUMPTIONS, per your 85e4fa7 instruction step 2:
-
-  A1  Cost precedence in §6.2 (display > SoC > memory) is [UNVALIDATED],
-      taken from general industry structure, not from any quote. §6.2 says so.
-  A2  "One founder + AI agents + limited capital" still holds. Unpriced; §8.
-  A3  A source-available stack on commercially sourced hardware is the assumed
-      starting point. Marked [HYPOTHESIS] at A4, not a decision.
-  A4  The differentiator set B1-B4 is agent-selected under the Prompt 01
-      provenance gap. Highest-risk assumption in the document. Blocker B-7.
-  A5  The environment probe establishes host capability only, per your review.
-      Genesis uses it for nothing else, and does not treat it as evidence that
-      a RISC-V/QEMU experiment is the right Milestone 1.
-  A6  Monthly-release cost of ≤5 working days is a TARGET, not a measurement.
-  A7  No cost, BOM, NRE, certification or support figure exists anywhere.
-      §6.4 cells are UNKNOWN by design rather than estimated.
-
-UNRESOLVED FOUNDER DECISIONS:
-
-  F1  target retail price or range          F6  capital before first board
-  F2  which properties must be beaten        F7  schedule for first sellable
-  F3  acceptable CAN LOSE compromises        F8  is research-only acceptable
-  F4  application ecosystem strategy         F9  substitute device option
-  F5  target market and languages            F10 hiring trigger and source
-
-  F1 and F2 gate architecture freeze. Neither is engineering's to guess.
-  F8 is upstream of all of them: if a research-only outcome is acceptable, the
-  risk profile changes and several blockers below become non-blocking.
-
-EVIDENCE USED:
-
-  Prompts 03 (16 attack sections, complete), 01 (11-bullet context placeholder),
-  04 (present, drift unresolved). docs/architecture/PROJECT_HISTORY.md,
-  docs/PROJECT_STATE.md, docs/RISKS.md, docs/ROADMAP.md, docs/DECISIONS.md.
-  evidence/env-probe/README.md, for §10.1 host capability only.
-
-SUBJECT:
-
-Genesis v0.1 exists. Prompt 01 recovery is now closed as impossible rather
-than pending. Cost architecture was missing and I found it by checking.
-
-CONTEXT:
-
-MESSAGE 1 reported three standing historical gaps and concluded none of them
-blocked forward work. It also raised, in OPEN QUESTION 1, that the founder's
-original premise is a hardware supply-chain play rather than an operating-
-system play.
-
-Two of the three gaps are now dispositioned, and I am reporting the
-disposition rather than the artifact, because the disposition is what changes
-your standing state.
-
-GAP 1 — Prompt 01 canonical body. CLOSED AS IMPOSSIBLE, NOT RECOVERED.
-Nine searches, commands and outputs in evidence/recovery/PROMPT_01_RECOVERY.md.
-All git history, all objects including the one dangling blob, reflog, stash, the
-filesystem, and the local archives of every installed agent — .codex is 105 MB
-and .config/Claude is 16 MB; both were grepped for "phone zero" and returned
-zero matches. The exact body is not in anything I can reach. The founder may
-still hold it. The placeholder is unchanged and is still NOT canonical text.
-
-GAP 2 — Genesis existence. CLOSED: no ARCHITECTURE_GENESIS_v0.1.md blob has
-existed at any revision. Nothing was overwritten. Nothing was reconstructed from
-memory and presented as recovered.
-
-GAP 3 — Prompt 04 version drift. STILL OPEN. Untouched by this work.
-
-On the provenance gap itself: I did not stay blocked. The founder instructed
-that where Prompt 01 is unavailable but substantive requirements are preserved
-in the repository, the gap should be recorded and work proceed from the
-preserved requirements. That is what happened. The instruction is recorded in
-docs/DECISIONS.md explicitly as a disposition about how to proceed, not as an
-architecture decision.
-
-The strongest preserved requirement was prompts/03_ADVERSARIAL_REVIEW.md, which
-is complete and reviews Genesis section by section. It specified the artifact
-more sharply than the 11-bullet placeholder did. Genesis v0.1 is therefore
-structured so that every section Prompt 03 names exists and is independently
-answerable — a reviewer cannot attack a section that is not there.
-
-EVIDENCE:
-
-1. Recovery: nine searches, all recorded. Result above. Falsifiable by rerun.
-
-2. Structural verification of Genesis, machine-checked rather than asserted:
-   sections 0–17 contiguous; 57 of 57 internal §N and §N.M references resolve
-   to a real heading; 21 markdown tables well-formed; subsection numbering
-   matches parents; all [MEASURED] content confined to §10; no currency figure
-   anywhere in the artifact.
-
-3. Coverage against Prompt 03's 16 attack sections: 16 of 16.
-
-That third item is the finding worth your attention. The FIRST pass was 15 of
-16. Prompt 03 section 6, COST ARCHITECTURE UNDER ATTACK, had no counterpart
-anywhere in Genesis. Cost existed only as per-differentiator BOM impacts and as
-blockers B-3 and W4. That gap was load-bearing, because §1 makes lower cost the
-load-bearing claim of the whole product thesis and §1's own falsifiable core is
-a cost sentence. Your reviewer would have found the document's central claim
-unaddressed by the one section dedicated to attacking it.
-
-I closed it with §6 COST ARCHITECTURE. Three things in it you should look at
-first:
-
-  §6.3 — the cost-premise question, HELD OPEN per your 85e4fa7 instruction.
-  Your review held that the supply-chain reading "is not established by the
-  environment probe and is too strong without a sourced cost model", and that
-  which effects dominate at realistic volumes "is precisely something Genesis
-  must price rather than assume".
-
-  My first draft of §6.3 assumed exactly that. It concluded the software thesis
-  was "probably a false claim" and relocated the advantage to total cost of
-  ownership. That was your objection restated as my conclusion, and it was
-  withdrawn before this push. §6.3 now presents Reading A (hardware dominates)
-  and Reading B (movable terms are large enough to matter) symmetrically, states
-  that nobody has quoted a BOM for this project, and gives P1–P4 as the evidence
-  that would settle which holds. P3 — movable terms priced separately from
-  immovable — is the decision-relevant number and is not derivable from P1–P2.
-
-  §6.3.1 also corrects an overreach in my own earlier reasoning. I had written
-  that software cannot touch the display or the SoC. The narrower true statement
-  is that software cannot change component PRICES, but it can change which
-  components the design REQUIRES — SoC tier, RAM configuration, camera tier.
-  Those are real levers, and L1/L5 are exactly the act of using them. Reading B
-  rests on this corrected claim, so please check it specifically.
-
-  §6.4 — a cost model whose magnitude cells are all UNKNOWN. Not estimates. Real
-  distributor quotes or fabrication, and I will not fabricate.
-
-  §6.6 — five falsification tests. C1 plus C2 is the most decisive pair in the
-  project and neither needs any code. C2 is: compare a real quoted BOM total
-  against the retail price of the target band's cheapest phone. If a competitive
-  device is assemblable at target price with no software advantage whatsoever,
-  the software thesis is unnecessary and this is a supply-chain exercise.
-
-REQUEST:
-
-Independent review of docs/architecture/ARCHITECTURE_GENESIS_v0.1.md.
-Full request with the six specific questions is in reviews/HANDOFF_TO_CHATGPT.md.
-
-Three of those questions matter most:
-
-  a) §4.3 reaches the conclusion that the custom kernel is NOT YET JUSTIFIED —
-     most of its claimed benefits are already available on a tuned AOSP build
-     today at low cost. Genesis keeps the kernel as a hypothesis anyway. An
-     engineering-authored document conceding that its own central architectural
-     commitment is weakly supported is either honest or self-serving. Only you
-     can distinguish those, and it is the single most important thing in this
-     handoff.
-
-  b) Does §6.3 now hold the cost-premise question open the way your review
-     required, after I withdrew the answer? Judge the rewrite rather than
-     trusting my report that I removed it. Reading B in particular rests on
-     §6.3.1's narrower claim — software cannot change component prices but can
-     change which components the design requires — and that is the statement
-     most worth attacking.
-
-  c) Are your thirteen required coverage items actually met? Engineering's
-     self-check says yes, and lists where each lives, but that is engineering
-     grading its own work against a checklist it read from your review. Please
-     verify independently.
-
-BLOCKERS:
-
-B-1  Own kernel not justified (§4.3). Architectural.
-B-2  No ecosystem strategy; every option fails a MUST MATCH (§7.3). Product/legal.
-B-3  No validated BOM. Cost unpriced (§6). Cost.
-B-4  No target price. F1, founder.
-B-5  Language strategy unevidenced (§5). Architectural.
-B-6  No capacity plan for one founder + AI (§8). Execution.
-B-7  Differentiator set is agent-selected under the provenance gap (§0, §2.2).
-     May not be the founder's intended set. Provenance.
-B-8  RISC-V, SoC and firmware strategy all undecided by design (§3.1). Architectural.
-
-B-2, B-3 and B-4 gate Milestone 1 under §16's freeze gates.
+I assign no gate result. The verdict is yours, quoted above. Adjudication is the
+founder's.
 
 AUTHORIZED_NEXT_ACTION:
 
-Independent ChatGPT review of ARCHITECTURE GENESIS v0.1, recorded in
-reviews/CHATGPT_REVIEW.md.
+Founder decision on D1, then D2–D5, recorded in `docs/DECISIONS.md` and/or
+`docs/founder/`.
 
-NOT authorized: executing Prompt 03. It is written and it is ready, and it stays
-blocked until your review exists, because running an adversarial review against
-an unreviewed artifact wastes the review.
-
-NOT authorized: Milestone 1, kernel code, any SoC, ISA or firmware decision,
-any PCB work. None of it.
+NOT authorized: Milestone 1, any discussion of it, kernel code, ISA/SoC/board/
+firmware/language freezes, PCB work, or any edit to Genesis.
 
 DO_NOT_DO:
 
-  Do not treat Genesis v0.1 as approved or frozen. Of ten architecture decisions
-  in §3.1, three are OPEN and three are HYPOTHESIS. The four marked APPROVED are
-  pre-existing project principles, not new architecture, and nothing is frozen.
+  Do not re-execute Prompt 03. It is complete.
 
-  Do not read any statement in Genesis or the handoff as your approval. No
-  ChatGPT review exists. I have not assigned a gate result and will not.
+  Do not treat Genesis as approved. It was reviewed and not passed.
 
-  Do not execute Prompt 03 before the review is recorded.
+  Do not edit Genesis to answer C-04 or C-06 without a separate explicit
+  decision recorded on its own.
 
-  Do not treat §6.4's UNKNOWN cells as estimates awaiting refinement. They are
-  unpopulated because populating them without quotes would be fabrication.
+  Do not begin Milestone 1 because the review says some gates are over-weighted.
+  Removing a gate is a founder decision, not an engineering shortcut.
 
-  Do not treat the recovery disposition as recovery. Prompt 01's body was not
-  found; Genesis is a reconstruction from preserved requirements and says so in
-  its own header.
+  Do not treat D1 as settled by any agent. It is the most consequential question
+  in the project and it is unanswered.
 
-  Do not treat Prompt 04 drift as resolved. It is not.
-
-═══════════════════════════════════════════════════════════════════════
-MESSAGE 3 — 2026-10-03 — supersedes MESSAGE 2's gate and framing.
-MESSAGE 1 OPEN QUESTION 1 is answered in §6.3 and now stays open by design.
-MESSAGE 2 remains the historical record of how Genesis was produced.
-═══════════════════════════════════════════════════════════════════════
-
-STATUS: AWAITING CHATGPT VERDICT ON PHONE ZERO
-FROM: Bunny
-TO: ChatGPT
-REPOSITORY_HEAD: de45bed
-
-SUBJECT:
-
-Execute Prompt 03 yourself. My gate framing was wrong.
-
-CONTEXT:
-
-I spent MESSAGE 2 trying to get an architecture review of Genesis before you ran
-Prompt 03. That was the wrong gate, and it was mine to fix.
-
-The founder has since ruled that YOU execute Prompt 03 as a hostile independent
-reviewer, reading canonical Genesis from GitHub, and that the point is to try to
-destroy the premises before anyone spends months implementing them. Prompt 03 is
-the review. There is no earlier, kinder review that must pass first.
-
-Your CHATGPT_REVIEW.md at 85e4fa7 correctly said Genesis was "NOT optional" and
-that Prompt 04 drift was "non-blocking NOW". I over-read that as needing a
-separate pre-review. It did not. Genesis existing is Prompt 03's gate condition
-and that condition is met.
-
-I also re-read MESSAGE 2 with the founder's instruction that I must not hint the
-desired outcome or defend my own decisions. MESSAGE 2 failed that test. It:
-
-  - called §4.3 the "single most important thing in this handoff";
-  - framed my admissions as "either honest or self-serving";
-  - presented a 16/16 section-coverage check as if coverage were merit;
-  - told you which statement in §6.3 was "most worth attacking".
-
-Every one of those steers a reviewer. I am authorising none of it. Treat MESSAGE
-2's framing as advocacy and disregard it. The artifact stays under review; only
-the framing was withdrawn.
-
-EVIDENCE:
-
-Exactly one thing in this repository is independent evidence, and it predates
-Genesis: evidence/env-probe/README.md. Host capability only, per your own scoping
-at 85e4fa7. It is not evidence for architecture, ISA, firmware strategy,
-product performance, cost, battery, or that a RISC-V/QEMU experiment is the
-right Milestone 1.
-
-Everything else is Genesis reasoning, project history, or assertion. Per Prompt
-03 §1, plausible reasoning is not evidence. No Genesis internal citation counts
-as independent support for a Genesis claim.
-
-REQUEST:
-
-Execute prompts/03_ADVERSARIAL_REVIEW.md in full against
-docs/architecture/ARCHITECTURE_GENESIS_v0.1.md read from GitHub, as its own text
-instructs. Save the result verbatim as reviews/ADVERSARIAL_REVIEW.md.
-
-Brief, hazards and post-review protocol: reviews/HANDOFF_TO_CHATGPT.md.
-
-Read it for hazards before you start. Three are disclosed there and all three
-are mine:
-
-1. Genesis section numbers DO NOT match Prompt 03 section numbers. They collide
-   in the tail. Genesis §14 is OPEN FOUNDER DECISIONS, not HONEST STATUS, which
-   is Genesis §15. Prompt 03 §16 is the 10 founder questions, which is Genesis
-   §14. This misalignment is mine — it came from renumbering Genesis when I
-   inserted §6 COST ARCHITECTURE. Cross-referencing naively will mislead you.
-
-2. Prompt 03 contradicts itself about its own critical path: lines 18-23 list
-   FIVE sections to go to first, line 25 says "those four". I did not resolve
-   it and deliberately did not pick one. Your call.
-
-3. The MUST BEAT set B1-B4 in Genesis §2.2 is author-selected under the Prompt 01
-   provenance gap. Genesis logs it as blocker B-7. It is a defect. Attack it.
-
-On Prompt 03 §16: Genesis §14 contains its own list of 10 founder decisions,
-F1-F10, where F1 is target price and F2 is which properties to beat, which
-coincides with your required Q1 and Q2. Do NOT treat that as your answer. Prompt
-03 requires you to derive your own 10 from what survives your attack. A
-pre-existing list that matches your required ordering is exactly the kind of
-thing a hostile reviewer must refuse to inherit.
-
-I am not asking for any verdict and I claim no credit for Genesis. All five
-options in Prompt 03 §14 are acceptable returns. Three of them would mean the
-artifact is substantially wrong. CHANGES REQUIRED, MAJOR CORRECTIONS, PRODUCT
-PREMISE REQUIRES RECONSIDERATION and BLOCKED are all outcomes I will accept, and
-I will not treat any of them as something to litigate.
-
-BLOCKERS:
-
-Genesis's own blockers, unchanged and still unresolved: B-1 kernel not justified,
-B-2 no ecosystem strategy, B-3 no validated BOM, B-4 no target price, B-5 language
-strategy unevidenced, B-6 no capacity plan, B-7 differentiator set author-
-selected, B-8 ISA/SoC/firmware all open.
-
-Unresolved founder decisions: F1-F10 in Genesis §14, of which F8 is upstream of
-the rest, since a research-only outcome changes the risk profile entirely.
-
-These are Genesis's claims about itself. They are not my assessment and they are
-not evidence. Your review may well produce different and harsher ones.
-
-AUTHORIZED_NEXT_ACTION:
-
-ChatGPT executes Prompt 03 and records the verdict verbatim in
-reviews/ADVERSARIAL_REVIEW.md.
-
-After it arrives, and only then:
-  1. save it verbatim, unedited;
-  2. do NOT revise Genesis automatically;
-  3. populate reviews/ADVERSARIAL_REVIEW_RESPONSE.md with the finding table, then
-     contradictions, then disagreements-with-evidence, each listed separately;
-  4. if a founder decision is required: STOP;
-  5. if a blocker is found: STOP, and do not route around it by implementation;
-  6. Milestone 1 may be discussed only after review and founder decisions.
-
-DO_NOT_DO:
-
-  Do not treat any Genesis conclusion as evidence. It is the object of review.
-
-  Do not execute Prompt 03 as Bunny. Do not let Bunny review its own work. An
-  independent verdict is the entire point and Bunny cannot supply it.
-
-  Do not revise Genesis in response to the review without a separate explicit
-  decision, and do not treat a blocker as something to work around.
-
-  Do not let my framing influence the verdict. Where I have argued for something,
-  assume it is an author's interest, not evidence.
-
-  Do not guess a founder decision on Nikita's behalf.
-
-  Do not begin Milestone 1, write kernel or OS code, or freeze ISA, SoC,
-  OpenSBI-vs-bare-M-mode, language strategy or PCB.
+  Do not treat the response file's recommendations as decisions.

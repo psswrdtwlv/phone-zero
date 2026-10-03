@@ -6,20 +6,31 @@ ARCHITECTURE / PRE-IMPLEMENTATION
 
 ## Current gate
 
-ADVERSARIAL ARCHITECTURE REVIEW -- Prompt 03, executed by ChatGPT
+FOUNDER DECISION — D1 first, then D2–D5
 
 ## Immediate task
 
-ChatGPT executes `prompts/03_ADVERSARIAL_REVIEW.md` as a hostile independent
-reviewer, against the canonical Genesis read from GitHub:
+ChatGPT executed `prompts/03_ADVERSARIAL_REVIEW.md` as a hostile independent
+reviewer against canonical Genesis. The review is saved verbatim at
+`reviews/ADVERSARIAL_REVIEW.md`.
 
-    docs/architecture/ARCHITECTURE_GENESIS_v0.1.md
+Returned verdict: **CORE PRODUCT ASSUMPTIONS MUST BE TESTED BEFORE ARCHITECTURE
+FREEZE**, with 8 blockers and 10 founder questions.
 
-Brief, hazards and post-review protocol:
-`reviews/HANDOFF_TO_CHATGPT.md`
+Bunny's response, including disagreements with evidence, is recorded at
+`reviews/ADVERSARIAL_REVIEW_RESPONSE.md`.
 
-Bunny does not execute Prompt 03 and does not review its own work. No verdict is
-requested, predicted or favoured.
+**STOP.** The next action belongs to Nikita, and to nobody else.
+
+Founder decides, in the response file's §4, in this order:
+
+- **D1** Is a research-only outcome acceptable? Upstream of everything else.
+- **D2** Target retail price and initial viable volume.
+- **D3** Which one or two user-perceivable properties must be beaten.
+- **D4** First buyer, first market/carrier, minimum essential-app set.
+- **D5** Stop conditions and capital ceiling before further hardware work.
+
+Answers are recorded in `docs/DECISIONS.md` and/or `docs/founder/`.
 
 ## Completed
 
@@ -29,38 +40,36 @@ Historical recovery attempted and recorded:
 RESULT:
 
 - Exact historical `prompts/01_PRODUCT_FIRST_GENESIS.md` body: NOT RECOVERED.
-  Searched all git history, all git objects including the single dangling blob,
-  reflog, stash, the filesystem, and every local agent conversation archive.
 - Historical `ARCHITECTURE_GENESIS_v0.1.md`: DID NOT EXIST at any revision.
-  Nothing was overwritten.
-- Genesis v0.1 was therefore written from the repository's preserved
-  requirements. It is a reconstruction, not a recovered artifact, and its header
-  says so.
+- Genesis v0.1 was written from the repository's preserved requirements. Its
+  header says so.
 
-`docs/architecture/ARCHITECTURE_GENESIS_v0.1.md` exists at `de45bed`,
-unreviewed, architecture NOT frozen.
+`docs/architecture/ARCHITECTURE_GENESIS_v0.1.md` exists, was independently
+reviewed at `4ac4091`, and is UNCHANGED by that review.
 
-## After the review arrives
+Adversarial review response recorded: 26 findings (R-01…R-26), 7
+contradictions (C-01…C-07), 3 partial disagreements with cited line evidence
+(D-01, D-02, D-03), 1 contested provenance claim (D-05), 4 recorded agreements
+(D-04, D-06, D-07 plus D-03's concession).
 
-Governing instruction: founder instruction of 2026-10-03, items 7-10.
+Two factual overclaims in Genesis were found and are recorded, NOT fixed:
+- C-04: B2 is called "fully provable" in QEMU; the reviewer is right that
+  image-level packet counting cannot prove product-level absence of telemetry.
+- C-06: the §11 "What works" bullet asserts handset properties with no evidence,
+  although the surrounding prose already denies the consumer reading.
 
-1. Save the review verbatim as `reviews/ADVERSARIAL_REVIEW.md`.
-2. Do NOT revise Genesis automatically.
-3. Populate `reviews/ADVERSARIAL_REVIEW_RESPONSE.md`: finding table, then
-   contradictions, then disagreements with evidence, separately.
-4. If a founder decision is required: STOP.
-5. If a blocker is identified: STOP. Do not route around it by implementation.
-6. Milestone 1 may be discussed only after the review and founder decisions.
+Fixing either requires a separate explicit decision. Do not edit Genesis.
 
 ## Explicitly blocked
 
 Do NOT:
 
-- implement Milestone 1;
-- discuss or scope Milestone 1 before the review and founder decisions;
+- implement, scope or discuss Milestone 1 before D1–D5;
 - write kernel or OS code;
-- revise Genesis v0.1 before the review is received, or in response to it
-  without an explicit separate decision;
+- revise Genesis v0.1 in response to the review without an explicit separate
+  decision;
+- re-execute Prompt 03;
+- guess, infer or pre-empt any founder decision, including D1;
 - decide OpenSBI vs bare M-mode;
 - freeze RISC-V or a physical ISA;
 - freeze a physical SoC;
@@ -68,8 +77,5 @@ Do NOT:
 - start custom PCB work;
 - execute Prompt 04;
 - manufacture missing historical artifacts from guesses;
-- treat Genesis v0.1 as approved, frozen, reviewed, or correct;
-- treat any conclusion inside Genesis as evidence;
-- execute Prompt 03 as Bunny, or review Bunny's own work;
-- nudge, hint, or predict the review outcome;
-- guess a founder decision.
+- treat Genesis v0.1 as approved, frozen or correct;
+- treat any conclusion inside Genesis as evidence.

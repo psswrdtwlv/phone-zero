@@ -35,15 +35,23 @@ NOT FROZEN.
 ARCHITECTURE GENESIS v0.1 exists as a DRAFT:
 `docs/architecture/ARCHITECTURE_GENESIS_v0.1.md`.
 
-It is unreviewed. It is not authoritative until ChatGPT reviews it and Nikita
-decides on it. It carries a declared provenance gap: the canonical historical
-Prompt 01 body was never recovered (see `evidence/recovery/PROMPT_01_RECOVERY.md`),
-so the artifact was reconstructed from the repository's own preserved
-requirements.
+It has now been independently reviewed. The review is saved verbatim at
+`reviews/ADVERSARIAL_REVIEW.md`. Its returned verdict is:
+
+**CORE PRODUCT ASSUMPTIONS MUST BE TESTED BEFORE ARCHITECTURE FREEZE.**
+
+Genesis remains unapproved and unfrozen. It carries a declared provenance gap:
+the canonical historical Prompt 01 body was never recovered (see
+`evidence/recovery/PROMPT_01_RECOVERY.md`), so the artifact was reconstructed
+from the repository's own preserved requirements.
 
 Of its ten architecture decisions, three are explicitly OPEN and three are
 HYPOTHESIS; the four marked APPROVED are pre-existing project principles, not
 new architecture. Nothing is frozen.
+
+The review response is recorded at `reviews/ADVERSARIAL_REVIEW_RESPONSE.md`:
+26 findings, 7 contradictions, 5 founder decisions (D1–D5). Genesis has NOT been
+edited in response.
 
 ## Established principles
 
@@ -77,22 +85,28 @@ new architecture. Nothing is frozen.
 
 ## Current gate
 
-ARCHITECTURE GENESIS v0.1
+FOUNDER DECISION — D1 first, then D2–D5
 
 ## Current next action
 
-ChatGPT executes `prompts/03_ADVERSARIAL_REVIEW.md` as a hostile independent
-reviewer against the canonical Genesis read from GitHub.
+Founder decides, in `reviews/ADVERSARIAL_REVIEW_RESPONSE.md` §4:
 
-Brief, hazards and post-review protocol: `reviews/HANDOFF_TO_CHATGPT.md`
-Post-review response scaffold: `reviews/ADVERSARIAL_REVIEW_RESPONSE.md`
+- **D1** Is a research-only outcome acceptable? Upstream of the rest.
+- **D2** Target retail price and initial viable volume.
+- **D3** Which user-perceivable properties must be beaten.
+- **D4** First buyer, first market/carrier, minimum essential-app set.
+- **D5** Stop conditions and capital ceiling before further hardware work.
 
-ARCHITECTURE GENESIS v0.1 is DRAFT, unreviewed, and NOT frozen. It is the
-object of review, not an input to it. No conclusion inside it is evidence.
+Answers are recorded in `docs/DECISIONS.md` / `docs/founder/`.
 
-Bunny does not execute Prompt 03, does not review its own work, does not request
-or predict any verdict, and does not revise Genesis in response to a review
-without a separate explicit decision.
+ARCHITECTURE GENESIS v0.1 has been independently reviewed; the review is saved
+verbatim at `reviews/ADVERSARIAL_REVIEW.md` and its returned verdict is
+CORE PRODUCT ASSUMPTIONS MUST BE TESTED BEFORE ARCHITECTURE FREEZE. The
+response, including one factual overclaim the reviewer found in Genesis, is at
+`reviews/ADVERSARIAL_REVIEW_RESPONSE.md`.
+
+Genesis remains UNEDITED, unapproved and unfrozen. Revising it in response to
+the review requires a separate explicit founder decision, which does not exist.
 
 Historical recovery was attempted and its result recorded:
 `evidence/recovery/PROMPT_01_RECOVERY.md`. Exact Prompt 01 wording was NOT
@@ -102,31 +116,29 @@ which is what the artifact does.
 
 ## Do NOT do yet
 
-- Do NOT discuss or scope Milestone 1 before the review and founder decisions.
-- Do NOT revise Genesis v0.1 in response to a review without an explicit
-  separate decision.
-- Do not treat Genesis v0.1 as approved, frozen, reviewed, or correct.
+- Do NOT implement or scope Milestone 1 before founder decisions D1–D5.
+- Do NOT revise Genesis v0.1 in response to the review without an explicit
+  separate founder decision.
+- Do not treat Genesis v0.1 as approved, frozen, or correct. It has been
+  reviewed and it was not passed.
 - Do not treat any conclusion inside Genesis as evidence.
-- Do not execute Prompt 03 as Bunny, or review Bunny's own work.
-- Do not nudge, hint or predict the review outcome.
-- Do not guess a founder decision.
-- Do not implement Milestone 1.
+- Do not guess or infer a founder decision, including D1.
 - Do not start kernel coding.
 - Do not freeze physical SoC.
 - Do not design custom PCB.
 - Do not treat RISC-V as decided.
-- Do not treat custom kernel as commercially justified.
+- Do not treat custom kernel as commercially justified. The review found this
+  unproven independently.
 - Do not begin hardware implementation.
 
 ## Prepared but NOT YET authorized for execution
 
-- Adversarial Architecture Review / Prompt 03
 - Milestone 1 implementation contract / Prompt 04
 
-Prompt 03 is used only after Genesis v0.1 exists.
+Prompt 03 is complete and is not to be re-executed.
 
-Prompt 04 is used only after review, founder decisions and sufficient
-architecture freeze.
+Prompt 04 is used only after founder decisions D1–D5, an Architecture v0.2 that
+incorporates them, and sufficient architecture freeze.
 
 ## Major open founder decisions
 
